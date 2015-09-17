@@ -50,8 +50,9 @@
 					  data:{email:document.getElementById('email').value,pass:document.getElementById('pwd').value},
 					  success: function(response) {
 					  if(response.trim() == "1"){
-						localStorage.email = document.getElementById('email').value;
-		    		    window.location = "MainActivity.html";
+						//document.getElementById("balance").innerHTML = "Available Balance: "+(UserBalance-pass:document.getElementById('pwd').value);
+						UserBalance= UserBalance-$( "#amount option:selected" ).text();
+						document.getElementById("balance").innerHTML = "Available Balance: "+UserBalance;
 						alert("Done");
 					  }else{
 						alert("Authorization Failure");
@@ -65,11 +66,13 @@
 					  }
 					});
 	}
+		
 	$.ajax({
 					  url: "http://xeamphiil.co.nf/SMRTBAL/CustBal.php",
 					  type: "get", //send it through get method
 					  data:{email:localStorage.email},
 					  success: function(response) {
+						UserBalance = response;
 						document.getElementById("balance").innerHTML = "Available Balance: "+response;
 					    
 						//alert(response);
