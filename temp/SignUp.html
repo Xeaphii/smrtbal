@@ -36,7 +36,8 @@
 					  data:{email:document.getElementById('email').value,pass:document.getElementById('pwd').value},
 					  success: function(response) {
 					    //Do Something
-					    alert(response);
+					    localStorage.email = document.getElementById('email').value;
+		    		    window.location = "MainActivity.html";
 						//alert(response);
 					  },
 					  error: function(xhr) {

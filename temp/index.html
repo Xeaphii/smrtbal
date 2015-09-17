@@ -21,16 +21,8 @@
 					  data:{email:user_id},
 					  success: function(response) {
 					    //Do Something
-					    temp = response.split(":");
-					    if(temp[0] == 0){
-					    	localStorage.myvariable =temp[1];
-					    	localStorage.fetch_credentials = "0";
-		    		        window.location = "GetDetails.html";
-					    }else{
-					  		  localStorage.myvariable =temp[1];
-					  		  localStorage.fetch_credentials = "1";
-		    		        window.location = "MainActivity.html";
-					    }
+					    localStorage.email = user_id;
+		    		    window.location = "MainActivity.html";
 						//alert(response);
 					  },
 					  error: function(xhr) {
