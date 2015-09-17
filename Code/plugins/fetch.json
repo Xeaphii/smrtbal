@@ -1,0 +1,50 @@
+{
+    "cordova-plugin-whitelist": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-whitelist@1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.phonegap.plugins.facebookconnect": {
+        "source": {
+            "type": "local",
+            "path": "C:\\cord\\phonegap-facebook-plugin-master\\phonegap-facebook-plugin-master"
+        },
+        "is_top_level": true,
+        "variables": {
+            "APP_ID": "120820104931799",
+            "APP_NAME": "SmrtCash"
+        }
+    },
+    "cordova-plugin-googleplus": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-googleplus"
+        },
+        "is_top_level": true,
+        "variables": {
+            "REVERSED_CLIENT_ID": "284687373435-4pa3sqkt4jnsh5niekkfg3k6uc3o3d0h.apps.googleusercontent.com"
+        }
+    },
+    "cordova-plugin-googleplayservices": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-googleplayservices"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "com.cabot.plugins.googleplus": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/cabotdeveloper/CordovaPlugin-GooglePlusWithDemoApp/",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {
+            "CLIENT_ID": "284687373435-4pa3sqkt4jnsh5niekkfg3k6uc3o3d0h.apps.googleusercontent.com"
+        }
+    }
+}
