@@ -1,0 +1,52 @@
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <link rel="stylesheet" type="text/css" href="css/main_activity.css" />
+        <title>SmrtCash</title>
+    </head>
+    <body>
+    <script  type="text/javascript">
+            	function msg()
+				{
+					localStorage.myvariable ="";
+					navigator.app.exitApp();
+					 //window.location = "index.html";
+
+				}
+				function MakePayment(){
+					window.location = "MakeTransaction.html";
+				}	
+				function MyTransaction(){
+					window.location = "MyPayments.html";
+				}			
+            	</script>
+    
+        
+       <button style=" width: 35%;color:#ffffff;float: right;padding: 5px 5px 5px 5px;margin:-10% 0 0 0;" onclick="msg()">Logout</button>
+		<h1>Liquidity</h1>
+			<div class="container-tag" style="margin:50% 0 8% 0">
+				
+				
+				
+				
+			</div>
+			<p>Your balance is :<script>
+				document.write(localStorage.cust_balance);
+			</script></p>
+			<button onclick="MyTransaction()" style="display: block; width: 95%;color:#ffffff;margin: 5px 2.5% 0px 2.5%;">Transactions</button>
+			 
+			<button onclick="MakePayment()" style="display: block; width: 95%;color:#ffffff;margin: 15px 2.5% 0px 2.5%;">Pay</button>
+  
+       
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>
