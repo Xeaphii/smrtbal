@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+ <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+ 
+</head>
+<body onload="InitCode()">
+<script  type="text/javascript">
+            	function msg()
+				{
+					localStorage.myvariable ="";
+					navigator.app.exitApp();
+					//window.location = "index.html";
+
+				}
+				
+            	</script>
+				<script>
+				function httpGet()
+				{
+				    var xmlHttp = new XMLHttpRequest();
+				    xmlHttp.open( "GET", "http://xeamphiil.co.nf/SMRTBAL/GetCredentials.php", false ); // false for synchronous request
+				    xmlHttp.send( null );
+				    return xmlHttp.responseText.trim();
+				}
+				function GetMsIdnAvail()
+				{
+				    trans_code =  httpGet();
+					var xmlHttp = new XMLHttpRequest();
+				    xmlHttp.open( "GET", 'https://fm.transfer-to.com/cgi-bin/shop/topup?login=thecompany&key='+trans_code +'&md5='+CryptoJS.MD5('thecompany'+'Wf4byrvXx'+trans_code).toString()+'&action=msisdn_info&destination_msisdn=+923236229970', false ); // false for synchronous request
+				    xmlHttp.send( null );
+				    return xmlHttp.responseText.trim();
+				}
+				
+				function GetReserveId()
+				{
+				    trans_code =  httpGet();
+					var xmlHttp = new XMLHttpRequest();
+				    xmlHttp.open( "GET", 'https://fm.transfer-to.com/cgi-bin/shop/topup?login=thecompany&key='+trans_code +'&md5='+CryptoJS.MD5('thecompany'+'Wf4byrvXx'+trans_code).toString()+'&action=reserve_id&destination_msisdn=+923236229970', false ); // false for synchronous request
+				    xmlHttp.send( );
+				    return xmlHttp.responseText;
+				}
+				function MakeTopUp()
+				{
+				
+				    trans_code =  httpGet();
+					//alert('https://fm.transfer-to.com/cgi-bin/shop/topup?login=thecompany&key='+trans_code +'&md5='+CryptoJS.MD5('thecompany'+'Wf4byrvXx'+trans_code).toString()+'&action=simulation&destination_msisdn='+$( "#c_code" ).text()+$('#recipeint_number').val()+'&product='+$( "#amount option:selected" ).val()+'&msisdn='+$( "#c_code" ).val()+$('#recipeint_number').val());
+					var xmlHttp = new XMLHttpRequest();
+				    xmlHttp.open( "GET", 'https://fm.transfer-to.com/cgi-bin/shop/topup?login=thecompany&key='+trans_code +'&md5='+CryptoJS.MD5('thecompany'+'Wf4byrvXx'+trans_code).toString()+'&action=topup&destination_msisdn='+$( "#c_code" ).val()+$('#recipeint_number').val()+'&product='+$( "#amount option:selected" ).val()+'&msisdn='+$( "#c_code" ).val()+$('#recipeint_number').val(), false ); // false for synchronous request
+				    xmlHttp.send( );
+				    return xmlHttp.responseText;
+				}
+				function UpdateBal()
+				{
+					UserBalance= UserBalance-$( "#amount option:selected" ).text();
+					document.getElementById("balance").innerHTML = "Available Balance: "+UserBalance;
+					
+					var xmlHttp = new XMLHttpRequest();
+				    xmlHttp.open( "GET", 'http://xeamphiil.co.nf/SMRTBAL/MakeTranc.php?email='+localStorage.email+'&balan='+$( "#amount option:selected" ).val(), false ); // false for synchronous request
+				    xmlHttp.send( );
+				    return xmlHttp.responseText;
+				}
+			function InitializationCode(){
+				//tmep = GetReserveId().split('\r\n')[1].split("=")[1];
+				if(Number(UserBalance) >Number($( "#amount option:selected" ).val() )){
+				
+				MakeTopUp();
+				UpdateBal();
+				alert("Done");
+				}else{
+					alert("Amount exceeds available balance");
+				}
+				//alert(JSON.parse(GetReserveId()));
+				
+			}
+			function InitCode(){
+			UserBalance = 0;
+			$.ajax({
+					  url: "http://xeamphiil.co.nf/SMRTBAL/CustBal.php",
+					  type: "get", //send it through get method
+					  data:{email:localStorage.email},
+					  success: function(response) {
+						UserBalance = response;
+						document.getElementById("balance").innerHTML = "Available Balance: "+response;
+					    
+						//alert(response);
+					  },
+					  error: function(xhr) {
+					    //Do Something to handle error
+						alert(JSON.stringify(xhr));
+					  }
+					});
+					}
+		</script>
+<button class="btn btn-default" style=" width: 35%;color:#ffffff;float: right;padding: 5px 5px 5px 5px;margin:-10% 0 0 0;" onclick="msg()">Logout</button>
+<div class="container" style="margin-top:20%">
+<img src="img/logo.png"  style="margin: 10% 10% 5px 10%;" alt="Smiley face" height="15%" width="80%">
+  <h3>Airtime Resseller</h3>
+  <p id = "balance">Available Balance: 0</p>
+  <form role="form" style="margin-top:5%">
+    <label for="sel1">Select Country Code</label>
+      <select style="font-size: 140%;padding: 50px 50px;" class="form-control" id="c_code">
+        <option value="+234">NGN(+234)</option>
+        <option value="+27">ZAR(+27)</option>
+        <option value="+92">PKR(+92)</option>
+      </select>
+      <br>
+      <div class="form-group">
+      <label for="recipeint_number">Enter recipient number:</label>
+      <input type="number" class="form-control" id="recipeint_number" >
+    </div>
+    <label for="sel1">Select Amount</label>
+      <select style="font-size: 140%;padding: 50px 50px;" class="form-control" id="amount">
+        <option>50</option>
+        <option>100</option>
+		<option>200</option>
+      </select>
+      <br>
+    
+    
+  </form>
+  <script>
+	function SignUp(){
+	
+		$.ajax({
+					  url: "http://xeamphiil.co.nf/SMRTBAL/SignIn.php",
+					  type: "get", //send it through get method
+					  data:{email:document.getElementById('email').value,pass:document.getElementById('pwd').value},
+					  success: function(response) {
+					  if(response.trim() == "1"){
+						//document.getElementById("balance").innerHTML = "Available Balance: "+(UserBalance-pass:document.getElementById('pwd').value);
+						UserBalance= UserBalance-$( "#amount option:selected" ).text();
+						document.getElementById("balance").innerHTML = "Available Balance: "+UserBalance;
+						alert("Done");
+					  }else{
+						alert("Authorization Failure");
+					  }
+					    
+						//alert(response);
+					  },
+					  error: function(xhr) {
+					    //Do Something to handle error
+						alert(JSON.stringify(xhr));
+					  }
+					});
+	}
+	
+  </script>
+  
+  <button onclick="InitializationCode()" class="btn btn-default">Send</button>
+</div>
+         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+         <script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+       
+		<div class="modal"><!-- Place at bottom of page --></div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>SmrtCash</title>
+    </head>
+    <body>
+				 
+    
+            	<script  type="text/javascript">
+            	function GetUserVerif(user_id)
+					{
+					$.ajax({
+					  url: "http://xeamphiil.co.nf/SMRTBAL/VerifyUser.php",
+					  type: "get", //send it through get method
+					  data:{email:user_id},
+					  success: function(response) {
+					    //Do Something
+					    localStorage.email = user_id;
+		    		    window.location = "MainActivity.html";
+						//alert(response);
+					  },
+					  error: function(xhr) {
+					    //Do Something to handle error
+						alert(JSON.stringify(xhr));
+					  }
+					});
+					}
+            	
+            	function msg()
+					{
+					facebookConnectPlugin.login(["public_profile"],
+		    			function (userData) 
+		    		    {
+		    		      GetUserVerif(userData.email);
+		    		     //   localStorage.myvariable =userData.email;
+		    		     //   window.location = "MainActivity.html";
+		    		    },
+		    	        function (error) { alert("" + error) }
+		    	    );
+							   
+				}
+				function msgGoogle()
+					{
+					
+					navigator.googleConnectPlugin.googleLogin(function (obj) {
+					     // alert(JSON.stringify(obj)); // do something useful instead of alerting
+					    //  localStorage.myvariable =;
+		    		        GetUserVerif(obj.Email);
+					    },
+					    function (msg) {
+					      alert('error: ' + msg);
+					    })
+												   
+				}
+            	</script>
+       
+<img src="img/logo.png"  style="margin: 10% 10% 5px 10%;" alt="Smiley face" height="15%" width="80%">
+
+			<div class="container">
+			  <div class="fb-icon-bg" ></div>
+			    <div class="fb-bg" onclick="msg()"></div>
+			  
+			  <div class="g-icon-bg"></div>
+			    <div class="g-bg" onclick="msgGoogle()"></div>
+				<div style="margin: 20px 0 0 0">
+				<h4 style="color: #c0c0c0;text-align: center;"> Or</h4>
+					<a href="SignUp.html" style="color: #fff;"><h2 style="color: #fff;text-align: center;"> Sign Up</h2></a>
+				</div>
+				
+			</div>
+			
+ 
+       
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/GooglePlus.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>
