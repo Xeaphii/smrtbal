@@ -42,28 +42,28 @@ public class MainActivity extends CordovaActivity
     {
        super.onCreate(savedInstanceState);
 
-	    BitXClient client = new BitXClient("ggyecy8p8du9", "ybwjj1uCtwBnTnwQTfzG2KhTgzQMxZEW1Gx0bW0advY");
-	    client.balance(
-
-                new Callback<BalanceList>() {
-                    @Override
-                    public void success(BalanceList balanceList, Response response) {
-                    	Log.e("Balance", responseBodyInputStreamToString(response));
-						//Toast.makeText(getApplicationContext(), "Balance fetched balance is "+balanceList.balance.get(1).balance+" "+balanceList.balance.get(1).asset, Toast.LENGTH_LONG).show();
-						
-                    	 loadUrl("javascript:localStorage.cust_balance='"
-                    	       		+  balanceList.balance.get(1).balance+"( "+balanceList.balance.get(1).asset+" )"
-                    	       		+ "';");
-//                    	 loadUrl("javascript:localStorage.asset='"
-//                 	       		+  balanceList.balance.get(0).asset+""
-//                 	       		+ "';");
-                    }
-
-                    @Override
-                    public void failure(RetrofitError error) {
-                        //handleFailure(error);
-                    }
-                });
+//	    BitXClient client = new BitXClient("ggyecy8p8du9", "ybwjj1uCtwBnTnwQTfzG2KhTgzQMxZEW1Gx0bW0advY");
+//	    client.balance(
+//
+//                new Callback<BalanceList>() {
+//                    @Override
+//                    public void success(BalanceList balanceList, Response response) {
+//                    	Log.e("Balance", responseBodyInputStreamToString(response));
+//						//Toast.makeText(getApplicationContext(), "Balance fetched balance is "+balanceList.balance.get(1).balance+" "+balanceList.balance.get(1).asset, Toast.LENGTH_LONG).show();
+//						
+//                    	 loadUrl("javascript:localStorage.cust_balance='"
+//                    	       		+  balanceList.balance.get(1).balance+"( "+balanceList.balance.get(1).asset+" )"
+//                    	       		+ "';");
+////                    	 loadUrl("javascript:localStorage.asset='"
+////                 	       		+  balanceList.balance.get(0).asset+""
+////                 	       		+ "';");
+//                    }
+//
+//                    @Override
+//                    public void failure(RetrofitError error) {
+//                        //handleFailure(error);
+//                    }
+//                });
 	    
        
 //      
