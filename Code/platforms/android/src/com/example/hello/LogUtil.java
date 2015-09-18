@@ -1,7 +1,7 @@
 package com.example.hello;
 
 import android.util.Log;
-import com.example.hello.BuildConfig;
+import com.xeaphii.smrtbal.BuildConfig;
 
 import java.util.MissingFormatArgumentException;
 import java.util.UnknownFormatConversionException;
